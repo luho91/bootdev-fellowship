@@ -5,7 +5,6 @@ import (
 	"bufio"
 	"os"
 	"errors"
-	"gopkg.in/yaml.v3"
 )
 
 func getToken() (string, error) {
@@ -27,29 +26,13 @@ func getToken() (string, error) {
 }
 
 func getTokenFromCLIConfig() (string, error) {
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		return "", errors.New("failed to get home dir")
-	}
+	cfg, err := readBootdevConfig()
 
-	confPath := fmt.Sprintf("%s/.bootdev.yaml", homeDir)
-	bootdevConfData := BootdevConfig{}
-
-	data, err := os.ReadFile(confPath)
-	if err != nil {
-		return "", errors.New("failed to read config file")
-	}
-
-	err = yaml.Unmarshal(data, &bootdevConfData)
-	if err != nil {
-		return "", errors.New("failed to unmarshal config data")
-	}
-
-	if bootdevConfData.AccessToken == "" {
+	if cfg.AccessToken == "" {
 		return "", errors.New("failed to get token from config data")
 	}
 
-	return bootdevConfData.AccessToken, nil
+	return cfg.AccessToken, err
 }
 
 func undefinedTokenMethod() (string, error) {
