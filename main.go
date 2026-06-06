@@ -6,14 +6,24 @@ import (
 )
 
 func main() {
-	fmt.Println("Hi, friend")
-
 	token, err := getToken()
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
 
-	fmt.Printf("Token: %s\n", token)
+	fmt.Println("Obtained token successfully, submitting lessons")
+
+	apiUrl, err := getApiUrl()
+	if err != nil {
+		fmt.Printf("Error: %v\n", err)
+		os.Exit(1)
+	}
+
+	err = sendLessons(apiUrl, token)
+	if err != nil {
+		fmt.Printf("Error: %v\n", err)
+	}
+
 	os.Exit(0)
 }
