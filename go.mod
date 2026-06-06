@@ -1,4 +1,4 @@
-module github.com/luho91/bootdev-fellowship
+module github.com/luho91/bootdev-bannerlord
 
 go 1.26.1
 
