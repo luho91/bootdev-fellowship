@@ -1,5 +1,5 @@
 # bootdev-bannerlord
-A tool to hack the bootdev fellowship achievement for those who can't afford it or don't have any friends.
+A tool to hack the bootdev bannerlord achievement for those who can't afford it or don't have any friends.
 ## Usage
 1. Download this repository (or the release binary)
 2. Create account
